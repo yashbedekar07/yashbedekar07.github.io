@@ -122,6 +122,20 @@
     color:var(--muted); font-size:clamp(1.05rem, 2vw, 1.3rem); margin-top:14px;
   }
 
+  .hero-top{display:flex; align-items:center; justify-content:space-between; gap:44px;}
+  .hero-intro{flex:1; min-width:280px;}
+  .hero-photo{flex-shrink:0;}
+  .hero-photo img{
+    width:148px; height:148px; border-radius:50%; object-fit:cover;
+    border:2px solid var(--blue);
+    box-shadow:0 0 0 6px rgba(94,168,201,0.08), 0 0 30px rgba(94,168,201,0.12);
+    display:block;
+  }
+  @media (max-width:640px){
+    .hero-top{flex-direction:column-reverse; align-items:flex-start; gap:22px;}
+    .hero-photo img{width:108px; height:108px;}
+  }
+
   .record-card{
     margin-top:40px;
     background:var(--panel); border:1px solid var(--line);
@@ -246,11 +260,18 @@
 </nav>
 
 <header class="hero wrap">
-  <div class="hero-query mono">
-    <span class="kw">SELECT</span> * <span class="kw">FROM</span> engineers <span class="kw">WHERE</span> name = <span style="color:#8FCBE8">'Yash Bedekar'</span>;
+  <div class="hero-top">
+    <div class="hero-intro">
+      <div class="hero-query mono">
+        <span class="kw">SELECT</span> * <span class="kw">FROM</span> engineers <span class="kw">WHERE</span> name = <span style="color:#8FCBE8">'Yash Bedekar'</span>;
+      </div>
+      <h1>Data Science student.<br>Full-stack engineer at heart.</h1>
+      <p class="role">MSc Data Science @ University of Europe for Applied Sciences — Potsdam, Germany</p>
+    </div>
+    <div class="hero-photo">
+      <img src="profile.jpg" alt="Portrait of Yash Bedekar">
+    </div>
   </div>
-  <h1>Data Science student.<br>Full-stack engineer at heart.</h1>
-  <p class="role">MSc Data Science @ University of Europe for Applied Sciences — Potsdam, Germany</p>
 
   <div class="record-card">
     <div class="record-row"><span class="record-key">location</span><span class="record-val">Potsdam, Germany</span></div>
