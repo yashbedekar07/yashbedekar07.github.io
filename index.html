@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yash Bedekar — Data Science &amp; Full-Stack Engineering</title>
+<meta name="description" content="Yash Bedekar — MSc Data Science student and full-stack developer based in Potsdam, Germany. Portfolio of data science, ML, and full-stack engineering projects.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B1B2B;
+    --ink-2:#0F2438;
+    --panel:#122A40;
+    --line:#24425A;
+    --line-soft:#1A3448;
+    --blue:#5EA8C9;
+    --blue-bright:#8FCBE8;
+    --brass:#E8B34D;
+    --paper:#F2F6F8;
+    --muted:#8FA6B8;
+    --muted-2:#5E7A8D;
+    --radius:10px;
+    --maxw:1080px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+
+  body{
+    margin:0;
+    background:
+      linear-gradient(var(--ink), var(--ink)) ,
+      repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(94,168,201,0.055) 39px, rgba(94,168,201,0.055) 40px),
+      repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(94,168,201,0.055) 39px, rgba(94,168,201,0.055) 40px);
+    color:var(--paper);
+    font-family:'Inter', -apple-system, sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+
+  .mono{font-family:'IBM Plex Mono', monospace;}
+
+  a{color:var(--blue-bright); text-decoration:none;}
+  a:hover{color:var(--brass);}
+  a:focus-visible, button:focus-visible{outline:2px solid var(--brass); outline-offset:3px;}
+
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px;}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(11,27,43,0.88);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line-soft);
+  }
+  .navbar{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 24px; max-width:var(--maxw); margin:0 auto;
+  }
+  .brand{
+    font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:1.05rem;
+    color:var(--paper); letter-spacing:-0.01em;
+  }
+  .brand span{color:var(--brass);}
+  .navlinks{display:flex; gap:28px; list-style:none; margin:0; padding:0;}
+  .navlinks a{
+    color:var(--muted); font-size:0.9rem; font-family:'IBM Plex Mono', monospace;
+  }
+  .navlinks a:hover{color:var(--blue-bright);}
+  .navtoggle{display:none; background:none; border:1px solid var(--line); color:var(--paper); border-radius:6px; padding:6px 10px; cursor:pointer;}
+
+  @media (max-width:720px){
+    .navlinks{
+      position:absolute; top:100%; left:0; right:0;
+      flex-direction:column; gap:0;
+      background:var(--ink-2); border-bottom:1px solid var(--line-soft);
+      max-height:0; overflow:hidden; transition:max-height 0.25s ease;
+    }
+    .navlinks.open{max-height:320px;}
+    .navlinks a{display:block; padding:14px 24px; border-top:1px solid var(--line-soft);}
+    .navtoggle{display:block;}
+  }
+
+  /* ---------- SECTION SCAFFOLDING ---------- */
+  section{padding:88px 0; border-bottom:1px solid var(--line-soft);}
+  section:last-of-type{border-bottom:none;}
+
+  .eyebrow{
+    display:flex; align-items:center; gap:10px;
+    font-family:'IBM Plex Mono', monospace; font-size:0.78rem;
+    color:var(--muted); text-transform:uppercase; letter-spacing:0.08em;
+    margin-bottom:20px;
+  }
+  .node{width:8px; height:8px; border-radius:50%; background:var(--brass); flex-shrink:0; box-shadow:0 0 0 3px rgba(232,179,77,0.15);}
+  .eyebrow::after{content:""; flex:1; height:1px; background:var(--line);}
+
+  .section-title{font-size:clamp(1.5rem, 3vw, 2.1rem); margin-bottom:36px; color:var(--paper);}
+
+  /* ---------- HERO ---------- */
+  .hero{padding:110px 0 90px; border-bottom:1px solid var(--line-soft);}
+  .hero-query{
+    font-family:'IBM Plex Mono', monospace; font-size:0.85rem; color:var(--blue);
+    margin-bottom:22px; opacity:0.9;
+  }
+  .hero-query .kw{color:var(--brass);}
+  .hero h1{font-size:clamp(2.4rem, 6vw, 4rem); line-height:1.05;}
+  .hero .role{
+    font-family:'Space Grotesk', sans-serif; font-weight:500;
+    color:var(--muted); font-size:clamp(1.05rem, 2vw, 1.3rem); margin-top:14px;
+  }
+
+  .record-card{
+    margin-top:40px;
+    background:var(--panel); border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:22px 26px;
+    max-width:620px;
+  }
+  .record-row{
+    display:flex; gap:14px; padding:7px 0;
+    font-family:'IBM Plex Mono', monospace; font-size:0.88rem;
+    border-bottom:1px dashed var(--line-soft);
+  }
+  .record-row:last-child{border-bottom:none;}
+  .record-key{color:var(--muted-2); min-width:92px; flex-shrink:0;}
+  .record-val{color:var(--paper);}
+  .status-dot{display:inline-block; width:7px; height:7px; border-radius:50%; background:#5ED98C; margin-right:8px; box-shadow:0 0 0 3px rgba(94,217,140,0.18);}
+
+  .cta-row{display:flex; gap:14px; flex-wrap:wrap; margin-top:32px;}
+  .btn{
+    font-family:'IBM Plex Mono', monospace; font-size:0.85rem;
+    padding:11px 20px; border-radius:7px; border:1px solid var(--line);
+    color:var(--paper); transition:all 0.15s ease; display:inline-flex; align-items:center; gap:8px;
+  }
+  .btn:hover{border-color:var(--brass); color:var(--brass); transform:translateY(-1px);}
+  .btn.primary{background:var(--brass); border-color:var(--brass); color:var(--ink); font-weight:600;}
+  .btn.primary:hover{background:var(--blue-bright); border-color:var(--blue-bright); color:var(--ink);}
+
+  /* ---------- ABOUT ---------- */
+  .about-text{max-width:680px; color:var(--paper); font-size:1.02rem;}
+  .about-text p{margin:0 0 16px;}
+  .about-text .muted{color:var(--muted);}
+
+  .stat-row{display:flex; gap:36px; margin-top:36px; flex-wrap:wrap;}
+  .stat b{font-family:'Space Grotesk', sans-serif; font-size:1.6rem; display:block; color:var(--blue-bright);}
+  .stat span{font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.05em;}
+
+  /* ---------- EXPERIENCE ---------- */
+  .exp-item{
+    display:grid; grid-template-columns:180px 1fr; gap:28px;
+    padding:28px 0; border-top:1px solid var(--line-soft);
+  }
+  .exp-item:first-of-type{border-top:none;}
+  .exp-date{font-family:'IBM Plex Mono', monospace; font-size:0.82rem; color:var(--muted); padding-top:3px;}
+  .exp-role{font-family:'Space Grotesk', sans-serif; font-size:1.15rem; font-weight:600; color:var(--paper);}
+  .exp-org{color:var(--blue); font-size:0.95rem; margin-top:2px; margin-bottom:12px;}
+  .exp-item ul{margin:0 0 14px; padding-left:20px; color:var(--muted); font-size:0.95rem;}
+  .exp-item li{margin-bottom:7px;}
+  .exp-item li b, .exp-item li strong{color:var(--paper); font-weight:600;}
+  .tag-row{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px;}
+  .tag{
+    font-family:'IBM Plex Mono', monospace; font-size:0.72rem;
+    background:var(--panel); border:1px solid var(--line); color:var(--blue-bright);
+    padding:4px 10px; border-radius:5px;
+  }
+  .code-link{font-family:'IBM Plex Mono', monospace; font-size:0.82rem; display:inline-block; margin-top:10px;}
+
+  @media (max-width:640px){
+    .exp-item{grid-template-columns:1fr; gap:8px;}
+  }
+
+  /* ---------- PROJECTS ---------- */
+  .grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:20px;}
+  .card{
+    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
+    padding:24px; display:flex; flex-direction:column;
+  }
+  .card-head{
+    font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:var(--muted-2);
+    text-transform:uppercase; letter-spacing:0.06em; margin-bottom:10px;
+  }
+  .card h3{font-size:1.1rem; margin-bottom:10px; color:var(--paper);}
+  .card p{color:var(--muted); font-size:0.92rem; margin:0 0 14px; flex:1;}
+  .card .impact{color:var(--brass); font-size:0.85rem; font-family:'IBM Plex Mono', monospace; margin-bottom:14px;}
+
+  /* ---------- SKILLS ---------- */
+  .skill-groups{display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:28px;}
+  .skill-group h4{
+    font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color:var(--muted-2);
+    text-transform:uppercase; letter-spacing:0.06em; margin-bottom:14px; font-weight:500;
+  }
+  .skill-group .tag-row{margin-top:0;}
+
+  /* ---------- EDUCATION ---------- */
+  .edu-item{padding:18px 0; border-top:1px solid var(--line-soft);}
+  .edu-item:first-of-type{border-top:none;}
+  .edu-item .exp-date{display:inline; margin-left:10px;}
+  .edu-item h3{display:inline; font-size:1.02rem;}
+  .edu-item p{color:var(--muted); margin:6px 0 0; font-size:0.9rem;}
+
+  /* ---------- CONTACT ---------- */
+  .contact-grid{display:flex; flex-wrap:wrap; gap:16px; margin-top:28px;}
+  .contact-card{
+    flex:1; min-width:220px;
+    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
+    padding:20px; text-align:left;
+  }
+  .contact-card .label{font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:var(--muted-2); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:8px; display:block;}
+  .contact-card a{font-size:0.98rem;}
+
+  footer{padding:36px 0; text-align:center; color:var(--muted-2); font-family:'IBM Plex Mono', monospace; font-size:0.78rem;}
+
+  /* reveal on scroll */
+  .reveal{opacity:0; transform:translateY(14px); transition:opacity 0.55s ease, transform 0.55s ease;}
+  .reveal.visible{opacity:1; transform:none;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="navbar">
+    <div class="brand">Yash<span>.</span>Bedekar</div>
+    <button class="navtoggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    <ul class="navlinks" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero wrap">
+  <div class="hero-query mono">
+    <span class="kw">SELECT</span> * <span class="kw">FROM</span> engineers <span class="kw">WHERE</span> name = <span style="color:#8FCBE8">'Yash Bedekar'</span>;
+  </div>
+  <h1>Data Science student.<br>Full-stack engineer at heart.</h1>
+  <p class="role">MSc Data Science @ University of Europe for Applied Sciences — Potsdam, Germany</p>
+
+  <div class="record-card">
+    <div class="record-row"><span class="record-key">location</span><span class="record-val">Potsdam, Germany</span></div>
+    <div class="record-row"><span class="record-key">status</span><span class="record-val"><span class="status-dot"></span>Open to Werkstudent &amp; Internship roles — Data Science / ML / Data Engineering</span></div>
+    <div class="record-row"><span class="record-key">stack</span><span class="record-val">Python · SQL · ASP.NET Core · React · TensorFlow · scikit-learn</span></div>
+    <div class="record-row"><span class="record-key">background</span><span class="record-val">1+ year professional full-stack development, now applied to data pipelines &amp; ML</span></div>
+  </div>
+
+  <div class="cta-row">
+    <a class="btn primary" href="mailto:yash.bedekar07@gmail.com">Email me</a>
+    <a class="btn" href="https://www.linkedin.com/in/yashbedekar/" target="_blank" rel="noopener">LinkedIn</a>
+    <a class="btn" href="https://github.com/yashbedekar07" target="_blank" rel="noopener">GitHub — Dev work</a>
+    <a class="btn" href="https://github.com/yashbedekar-DS" target="_blank" rel="noopener">GitHub — DS projects</a>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap reveal">
+    <div class="eyebrow"><span class="node"></span><span class="mono">TABLE: about</span></div>
+    <h2 class="section-title">About</h2>
+    <div class="about-text">
+      <p>I'm an MSc Data Science student in Germany with a foundation in professional full-stack development — over a year spent designing SQL Server schemas, building REST APIs, and shipping enterprise ASP.NET and React applications before starting the Master's.</p>
+      <p class="muted">That background is now applied to the data layer directly: building ML pipelines end-to-end, from data cleaning and feature engineering through model evaluation and explainability (Grad-CAM, SHAP), and to full-stack data applications combining APIs, dashboards, and cloud deployment.</p>
+      <p>AWS Academy Graduate — Data Engineering, and Microsoft Certified: Azure Fundamentals.</p>
+    </div>
+    <div class="stat-row">
+      <div class="stat"><b>3</b><span>Full-stack apps shipped</span></div>
+      <div class="stat"><b>5</b><span>Data science &amp; ML projects</span></div>
+      <div class="stat"><b>2</b><span>Cloud certifications</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap reveal">
+    <div class="eyebrow"><span class="node"></span><span class="mono">TABLE: experience</span></div>
+    <h2 class="section-title">Experience</h2>
+
+    <div class="exp-item">
+      <div class="exp-date mono">Aug 2024 – Jul 2025<br>Pune, India</div>
+      <div>
+        <div class="exp-role">Full Stack .NET Developer</div>
+        <div class="exp-org">Inquisitech Solutions</div>
+        <ul>
+          <li>Fully delivered the <strong>Rakes, Consignors, and Transports</strong> modules of a rail logistics management system using ASP.NET Core MVC, C#, Entity Framework Core, and SQL Server.</li>
+          <li>Architected the relational schema and EF Core migrations for the system's full 12-module design.</li>
+          <li><strong>20% gain in operational efficiency</strong>, <strong>15% reduction in processing time</strong> through optimized data workflows.</li>
+        </ul>
+        <div class="tag-row">
+          <span class="tag">ASP.NET Core MVC</span><span class="tag">Entity Framework Core</span><span class="tag">SQL Server</span><span class="tag">Azure</span>
+        </div>
+        <a class="code-link" href="https://github.com/yashbedekar07/overseas-transport-management-sys" target="_blank" rel="noopener">→ View repository</a>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date mono">Sep 2025 – Feb 2026<br>Remote / India</div>
+      <div>
+        <div class="exp-role">React JS Developer</div>
+        <div class="exp-org">Vedartsolutions</div>
+        <ul>
+          <li>Built the React frontend for <strong>BodyPowerGym</strong>, a gym management platform, integrating REST APIs backed by .NET Core and SQL Server.</li>
+          <li>Designed a custom admin dashboard with real-time data visualization of gym metrics.</li>
+          <li><strong>25% increase in user engagement</strong> through improved UX and real-time features.</li>
+        </ul>
+        <div class="tag-row">
+          <span class="tag">React</span><span class="tag">.NET Core</span><span class="tag">SQL Server</span><span class="tag">Bootstrap</span>
+        </div>
+        <a class="code-link" href="https://github.com/yashbedekar07/fit-track-web-app" target="_blank" rel="noopener">→ View repository</a>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date mono">Freelance<br>Remote</div>
+      <div>
+        <div class="exp-role">Full Stack .NET Developer</div>
+        <div class="exp-org">Self-Employed — Client Project</div>
+        <ul>
+          <li>Independently designed, built, and deployed <strong>iCare</strong>, an optical clinic management system — patient records, prescriptions, and inventory behind a secure admin panel.</li>
+          <li>Implemented cookie-based auth with PBKDF2 password hashing (SHA-256, 100K iterations).</li>
+          <li><strong>30% faster data retrieval</strong>, <strong>20% lower operational costs</strong> for the client.</li>
+        </ul>
+        <div class="tag-row">
+          <span class="tag">ASP.NET Core 8 MVC</span><span class="tag">Entity Framework Core</span><span class="tag">SQL Server</span>
+        </div>
+        <a class="code-link" href="https://github.com/yashbedekar07/icare-optical-clinic" target="_blank" rel="noopener">→ View repository</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap reveal">
+    <div class="eyebrow"><span class="node"></span><span class="mono">TABLE: projects</span></div>
+    <h2 class="section-title">Data Science &amp; Personal Projects</h2>
+
+    <div class="grid">
+      <div class="card">
+        <div class="card-head">Academic — MSc Data Science</div>
+        <h3>Football Player Role Classification</h3>
+        <p>Built and benchmarked a custom CNN against ResNet50 and MobileNetV2 to classify football players into 4 positional roles (2,325 images). Applied Grad-CAM and SHAP for explainability.</p>
+        <div class="impact">Deployed as a live React demo app</div>
+        <div class="tag-row">
+          <span class="tag">TensorFlow</span><span class="tag">CNN</span><span class="tag">Grad-CAM</span><span class="tag">SHAP</span>
+        </div>
+        <a class="code-link" href="https://github.com/yashbedekar-DS/football-role-classification-ml" target="_blank" rel="noopener">→ View repository</a>
+      </div>
+
+      <div class="card">
+        <div class="card-head">Academic — MSc Data Science</div>
+        <h3>WHOOP Fitness Recovery Prediction</h3>
+        <p>Built a regression pipeline on 100,000 records / 41 features of wearable fitness data to predict recovery score. Benchmarked models via MAE, RMSE, R², and cross-validation.</p>
+        <div class="impact">Linear Regression selected for best interpretability/accuracy balance</div>
+        <div class="tag-row">
+          <span class="tag">scikit-learn</span><span class="tag">Regression</span><span class="tag">Cross-Validation</span>
+        </div>
+        <a class="code-link" href="https://github.com/yashbedekar-DS/whoop-fitness-recovery-ml" target="_blank" rel="noopener">→ View repository</a>
+      </div>
+
+      <div class="card">
+        <div class="card-head">Team Project — Led 4 members</div>
+        <h3>India Air Quality Index Analysis</h3>
+        <p>Led a team analyzing 29,531 daily CPCB records across 26 Indian cities (2015–2020). Owned the data pipeline: ingestion, cleaning, and feature engineering.</p>
+        <div class="impact">~26% of city-days recorded unhealthy AQI levels</div>
+        <div class="tag-row">
+          <span class="tag">Python</span><span class="tag">pandas</span><span class="tag">Data Pipeline</span>
+        </div>
+        <a class="code-link" href="https://github.com/yashbedekar07/air-quality-index-project" target="_blank" rel="noopener">→ View repository</a>
+      </div>
+
+      <div class="card">
+        <div class="card-head">Group Project — Analysis &amp; Reporting Lead</div>
+        <h3>GeoPulse Intelligence</h3>
+        <p>Linked commodity markets (Brent Oil, Gold, Silver) and SWIFT currency-flow data to real geopolitical events. Led analysis synthesis, report writing, and GitHub repository management.</p>
+        <div class="impact">6-member team · Applied Data Analytics &amp; Market Research coursework</div>
+        <div class="tag-row">
+          <span class="tag">Data Analysis</span><span class="tag">Market Research</span><span class="tag">Technical Writing</span>
+        </div>
+        <a class="code-link" href="https://github.com/yashbedekar-DS/GeoPulse-Intelligence-DSB-Project" target="_blank" rel="noopener">→ View repository</a>
+      </div>
+
+      <div class="card">
+        <div class="card-head">Personal Project</div>
+        <h3>FitnessGym Web App</h3>
+        <p>Full-stack gym management system covering member management, trainer scheduling, class bookings, and equipment tracking through an admin dashboard.</p>
+        <div class="impact">Relational schema: Members, Trainers, Classes, Equipment, Attendance</div>
+        <div class="tag-row">
+          <span class="tag">ASP.NET MVC</span><span class="tag">Entity Framework</span><span class="tag">SQL Server</span>
+        </div>
+        <a class="code-link" href="https://github.com/yashbedekar07/FitnessGym-WebApp" target="_blank" rel="noopener">→ View repository</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap reveal">
+    <div class="eyebrow"><span class="node"></span><span class="mono">TABLE: skills</span></div>
+    <h2 class="section-title">Skills</h2>
+    <div class="skill-groups">
+      <div class="skill-group">
+        <h4>Languages</h4>
+        <div class="tag-row">
+          <span class="tag">Python</span><span class="tag">C#</span><span class="tag">JavaScript</span><span class="tag">SQL</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Data &amp; ML</h4>
+        <div class="tag-row">
+          <span class="tag">pandas</span><span class="tag">NumPy</span><span class="tag">scikit-learn</span><span class="tag">TensorFlow / Keras</span><span class="tag">Power BI</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Full-Stack Dev</h4>
+        <div class="tag-row">
+          <span class="tag">ASP.NET Core / MVC</span><span class="tag">React</span><span class="tag">Entity Framework</span><span class="tag">FastAPI</span><span class="tag">REST APIs</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Data &amp; Cloud</h4>
+        <div class="tag-row">
+          <span class="tag">SQL Server</span><span class="tag">Azure</span><span class="tag">AWS</span><span class="tag">Docker</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Tools</h4>
+        <div class="tag-row">
+          <span class="tag">Git / GitHub</span><span class="tag">Jupyter</span><span class="tag">IIS</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Languages Spoken</h4>
+        <div class="tag-row">
+          <span class="tag">English</span><span class="tag">Hindi</span><span class="tag">Marathi</span><span class="tag">German (A2/B1)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap reveal">
+    <div class="eyebrow"><span class="node"></span><span class="mono">TABLE: education</span></div>
+    <h2 class="section-title">Education &amp; Certifications</h2>
+
+    <div class="edu-item">
+      <h3>MSc Data Science</h3><span class="exp-date mono">Mar 2026 – Aug 2027 (expected)</span>
+      <p>University of Europe for Applied Sciences — Potsdam, Germany</p>
+    </div>
+    <div class="edu-item">
+      <h3>MSc Computer Applications</h3><span class="exp-date mono">Aug 2022 – Aug 2024</span>
+      <p>Bharati Vidyapeeth, India</p>
+    </div>
+    <div class="edu-item">
+      <h3>BSc Computer Applications</h3><span class="exp-date mono">Jun 2018 – Aug 2022</span>
+      <p>Bharati Vidyapeeth, India</p>
+    </div>
+    <div class="edu-item">
+      <p style="margin-top:4px">🎖 AWS Academy Graduate — Data Engineering &nbsp;·&nbsp; Microsoft Certified: Azure Fundamentals &nbsp;·&nbsp; Python for Data Science &nbsp;·&nbsp; Fundamentals of Artificial Intelligence</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap reveal">
+    <div class="eyebrow"><span class="node"></span><span class="mono">TABLE: contact</span></div>
+    <h2 class="section-title">Let's talk</h2>
+    <p class="about-text muted">Open to Werkstudent and internship opportunities in Data Science, ML, and Data Engineering — Berlin &amp; Potsdam, remote/hybrid across Germany.</p>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <span class="label">Email</span>
+        <a href="mailto:yash.bedekar07@gmail.com">yash.bedekar07@gmail.com</a>
+      </div>
+      <div class="contact-card">
+        <span class="label">LinkedIn</span>
+        <a href="https://www.linkedin.com/in/yashbedekar/" target="_blank" rel="noopener">in/yashbedekar</a>
+      </div>
+      <div class="contact-card">
+        <span class="label">GitHub — Dev work</span>
+        <a href="https://github.com/yashbedekar07" target="_blank" rel="noopener">github.com/yashbedekar07</a>
+      </div>
+      <div class="contact-card">
+        <span class="label">GitHub — DS projects</span>
+        <a href="https://github.com/yashbedekar-DS" target="_blank" rel="noopener">github.com/yashbedekar-DS</a>
+      </div>
+      <div class="contact-card">
+        <span class="label">Kaggle</span>
+        <a href="https://www.kaggle.com/yashbedekar07" target="_blank" rel="noopener">kaggle.com/yashbedekar07</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Yash Bedekar — Built with vanilla HTML/CSS, hosted on GitHub Pages
+</footer>
+
+<script>
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', open);
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', false);
+  }));
+
+  const revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    revealEls.forEach(el => io.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add('visible'));
+  }
+</script>
+
+</body>
+</html>
