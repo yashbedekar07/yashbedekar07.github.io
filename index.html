@@ -3,554 +3,442 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Yash Bedekar — Data Science &amp; Full-Stack Engineering</title>
-<meta name="description" content="Yash Bedekar — MSc Data Science student and full-stack developer based in Potsdam, Germany. Portfolio of data science, ML, and full-stack engineering projects.">
+<title>Yash Bedekar | Data Science & Software Development</title>
+<meta name="description" content="Yash Bedekar, MSc Data Science student in Potsdam, Germany. Data analysis, machine learning and full-stack development. Open to working student roles in Berlin and Potsdam.">
+<meta property="og:title" content="Yash Bedekar | Data Science & Software Development">
+<meta property="og:description" content="MSc Data Science student in Potsdam with 13 months of software development experience. Open to working student roles.">
+<meta property="og:image" content="profile.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#0B1B2B;
-    --ink-2:#0F2438;
-    --panel:#122A40;
-    --line:#24425A;
-    --line-soft:#1A3448;
-    --blue:#5EA8C9;
-    --blue-bright:#8FCBE8;
-    --brass:#E8B34D;
-    --paper:#F2F6F8;
-    --muted:#8FA6B8;
-    --muted-2:#5E7A8D;
-    --radius:10px;
-    --maxw:1080px;
+    --bg:#F4F6F5;
+    --surface:#FFFFFF;
+    --ink:#15201B;
+    --muted:#56665E;
+    --line:#DCE3DF;
+    --accent:#1F5F4A;
+    --accent-ink:#FFFFFF;
+    --accent-soft:#E2EDE8;
+    --maxw:1120px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0F1613; --surface:#16201B; --ink:#E9EFEC; --muted:#9AABA2;
+      --line:#26332D; --accent:#6FC3A3; --accent-ink:#0F1613; --accent-soft:#1C2C25;
+    }
   }
 
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  @media (prefers-reduced-motion: reduce){
-    html{scroll-behavior:auto;}
-    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
-  }
-
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
   body{
-    margin:0;
-    background:
-      linear-gradient(var(--ink), var(--ink)) ,
-      repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(94,168,201,0.055) 39px, rgba(94,168,201,0.055) 40px),
-      repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(94,168,201,0.055) 39px, rgba(94,168,201,0.055) 40px);
-    color:var(--paper);
-    font-family:'Inter', -apple-system, sans-serif;
-    line-height:1.6;
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:'Instrument Sans',system-ui,sans-serif; font-size:17px; line-height:1.6;
     -webkit-font-smoothing:antialiased;
   }
+  h1,h2,h3{font-family:'Bricolage Grotesque',system-ui,sans-serif; margin:0; letter-spacing:-0.02em; line-height:1.15}
+  p{margin:0}
+  a{color:var(--accent); text-underline-offset:3px}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:4px}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px}
+  .skip{position:absolute; left:-999px}
+  .skip:focus{left:16px; top:16px; background:var(--surface); padding:8px 12px; z-index:100}
 
-  h1,h2,h3{
-    font-family:'Space Grotesk', sans-serif;
-    font-weight:600;
-    margin:0;
-    letter-spacing:-0.01em;
+  /* Nav */
+  header.top{position:sticky; top:0; z-index:40; background:color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter:blur(10px); border-bottom:1px solid var(--line)}
+  .nav{display:flex; align-items:center; justify-content:space-between; height:64px}
+  .brand{font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:1.1rem; color:var(--ink); text-decoration:none}
+  .nav ul{display:flex; gap:28px; list-style:none; margin:0; padding:0}
+  .nav ul a{color:var(--muted); text-decoration:none; font-size:0.95rem; font-weight:500}
+  .nav ul a:hover{color:var(--ink)}
+  .menu-btn{display:none; background:none; border:1px solid var(--line); color:var(--ink); border-radius:8px; padding:6px 12px; font:inherit; cursor:pointer}
+  @media (max-width:760px){
+    .menu-btn{display:block}
+    .nav ul{position:absolute; top:64px; left:0; right:0; flex-direction:column; gap:0; background:var(--bg); border-bottom:1px solid var(--line); display:none}
+    .nav ul.open{display:flex}
+    .nav ul a{display:block; padding:14px 24px; border-top:1px solid var(--line)}
   }
 
-  .mono{font-family:'IBM Plex Mono', monospace;}
-
-  a{color:var(--blue-bright); text-decoration:none;}
-  a:hover{color:var(--brass);}
-  a:focus-visible, button:focus-visible{outline:2px solid var(--brass); outline-offset:3px;}
-
-  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px;}
-
-  /* ---------- NAV ---------- */
-  nav{
-    position:sticky; top:0; z-index:50;
-    background:rgba(11,27,43,0.88);
-    backdrop-filter:blur(8px);
-    border-bottom:1px solid var(--line-soft);
-  }
-  .navbar{
-    display:flex; align-items:center; justify-content:space-between;
-    padding:16px 24px; max-width:var(--maxw); margin:0 auto;
-  }
-  .brand{
-    font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:1.05rem;
-    color:var(--paper); letter-spacing:-0.01em;
-  }
-  .brand span{color:var(--brass);}
-  .navlinks{display:flex; gap:28px; list-style:none; margin:0; padding:0;}
-  .navlinks a{
-    color:var(--muted); font-size:0.9rem; font-family:'IBM Plex Mono', monospace;
-  }
-  .navlinks a:hover{color:var(--blue-bright);}
-  .navtoggle{display:none; background:none; border:1px solid var(--line); color:var(--paper); border-radius:6px; padding:6px 10px; cursor:pointer;}
-
-  @media (max-width:720px){
-    .navlinks{
-      position:absolute; top:100%; left:0; right:0;
-      flex-direction:column; gap:0;
-      background:var(--ink-2); border-bottom:1px solid var(--line-soft);
-      max-height:0; overflow:hidden; transition:max-height 0.25s ease;
-    }
-    .navlinks.open{max-height:320px;}
-    .navlinks a{display:block; padding:14px 24px; border-top:1px solid var(--line-soft);}
-    .navtoggle{display:block;}
+  /* Hero */
+  .hero{padding:72px 0 80px}
+  .hero-grid{display:grid; grid-template-columns:1.25fr 0.75fr; gap:64px; align-items:center}
+  .hero h1{font-size:clamp(2.6rem,6.2vw,4.6rem); font-weight:700}
+  .hero .lede{font-size:clamp(1.1rem,2vw,1.3rem); color:var(--muted); margin-top:22px; max-width:34ch}
+  .avail{display:inline-flex; align-items:center; gap:10px; margin-top:28px; padding:10px 16px; background:var(--accent-soft); border-radius:999px; font-size:0.95rem; font-weight:500}
+  .avail::before{content:""; width:9px; height:9px; border-radius:50%; background:var(--accent)}
+  .actions{display:flex; flex-wrap:wrap; gap:12px; margin-top:32px}
+  .btn{display:inline-block; padding:12px 22px; border-radius:10px; font-weight:600; font-size:0.97rem; text-decoration:none; border:1.5px solid var(--ink); color:var(--ink)}
+  .btn:hover{background:var(--ink); color:var(--bg)}
+  .btn.primary{background:var(--accent); border-color:var(--accent); color:var(--accent-ink)}
+  .btn.primary:hover{filter:brightness(1.1); background:var(--accent); color:var(--accent-ink)}
+  .portrait{position:relative}
+  .portrait img{display:block; width:100%; aspect-ratio:4/5; object-fit:cover; object-position:center 30%; border-radius:20px; background:var(--line)}
+  .portrait figcaption{position:absolute; left:-28px; bottom:28px; background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:14px 18px; box-shadow:0 12px 30px rgba(15,30,24,0.10); font-size:0.9rem; line-height:1.4}
+  .portrait figcaption strong{display:block; font-family:'Bricolage Grotesque',sans-serif; font-size:1.6rem; color:var(--accent)}
+  @media (max-width:860px){
+    .hero{padding:40px 0 56px}
+    .hero-grid{grid-template-columns:1fr; gap:36px}
+    .portrait{max-width:220px; order:-1}
+    .portrait figcaption{left:auto; right:-12px}
   }
 
-  /* ---------- SECTION SCAFFOLDING ---------- */
-  section{padding:88px 0; border-bottom:1px solid var(--line-soft);}
-  section:last-of-type{border-bottom:none;}
-
-  .eyebrow{
-    display:flex; align-items:center; gap:10px;
-    font-family:'IBM Plex Mono', monospace; font-size:0.78rem;
-    color:var(--muted); text-transform:uppercase; letter-spacing:0.08em;
-    margin-bottom:20px;
-  }
-  .node{width:8px; height:8px; border-radius:50%; background:var(--brass); flex-shrink:0; box-shadow:0 0 0 3px rgba(232,179,77,0.15);}
-  .eyebrow::after{content:""; flex:1; height:1px; background:var(--line);}
-
-  .section-title{font-size:clamp(1.5rem, 3vw, 2.1rem); margin-bottom:36px; color:var(--paper);}
-
-  /* ---------- HERO ---------- */
-  .hero{padding:110px 0 90px; border-bottom:1px solid var(--line-soft);}
-  .hero-query{
-    font-family:'IBM Plex Mono', monospace; font-size:0.85rem; color:var(--blue);
-    margin-bottom:22px; opacity:0.9;
-  }
-  .hero-query .kw{color:var(--brass);}
-  .hero h1{font-size:clamp(2.4rem, 6vw, 4rem); line-height:1.05;}
-  .hero .role{
-    font-family:'Space Grotesk', sans-serif; font-weight:500;
-    color:var(--muted); font-size:clamp(1.05rem, 2vw, 1.3rem); margin-top:14px;
+  /* Proof strip */
+  .proof{border-top:1px solid var(--line); border-bottom:1px solid var(--line); background:var(--surface)}
+  .proof-grid{display:grid; grid-template-columns:repeat(4,1fr)}
+  .proof-grid div{padding:26px 24px; border-left:1px solid var(--line)}
+  .proof-grid div:first-child{border-left:none; padding-left:0}
+  .proof-grid strong{display:block; font-family:'Bricolage Grotesque',sans-serif; font-size:1.15rem}
+  .proof-grid span{color:var(--muted); font-size:0.92rem}
+  @media (max-width:860px){
+    .proof-grid{grid-template-columns:1fr 1fr}
+    .proof-grid div{padding:20px 16px 20px 0; border-left:none; border-top:1px solid var(--line)}
+    .proof-grid div:nth-child(-n+2){border-top:none}
   }
 
-  .hero-top{display:flex; align-items:center; justify-content:space-between; gap:44px;}
-  .hero-intro{flex:1; min-width:280px;}
-  .hero-photo{flex-shrink:0;}
-  .hero-photo img{
-    width:148px; height:148px; border-radius:50%; object-fit:cover;
-    border:2px solid var(--blue);
-    box-shadow:0 0 0 6px rgba(94,168,201,0.08), 0 0 30px rgba(94,168,201,0.12);
-    display:block;
-  }
-  @media (max-width:640px){
-    .hero-top{flex-direction:column-reverse; align-items:flex-start; gap:22px;}
-    .hero-photo img{width:108px; height:108px;}
-  }
+  /* Sections */
+  section{padding:88px 0}
+  .sec-head{display:grid; grid-template-columns:280px 1fr; gap:48px; margin-bottom:44px}
+  .sec-head h2{font-size:clamp(1.8rem,3.4vw,2.5rem)}
+  .sec-head p{color:var(--muted); max-width:58ch; padding-top:8px}
+  @media (max-width:860px){ .sec-head{grid-template-columns:1fr; gap:12px} section{padding:64px 0} }
 
-  .record-card{
-    margin-top:40px;
-    background:var(--panel); border:1px solid var(--line);
-    border-radius:var(--radius);
-    padding:22px 26px;
-    max-width:620px;
+  /* Featured projects */
+  .feature{display:grid; grid-template-columns:280px 1fr; gap:48px; padding:36px 0; border-top:1px solid var(--line)}
+  .feature:last-child{border-bottom:1px solid var(--line)}
+  .feature .meta{color:var(--muted); font-size:0.93rem}
+  .feature .meta b{display:block; color:var(--ink); font-weight:600; margin-bottom:4px}
+  .feature h3{font-size:1.55rem; margin-bottom:12px}
+  .feature p{color:var(--muted); max-width:62ch}
+  .feature ul{margin:14px 0 0; padding-left:20px; color:var(--muted); max-width:62ch}
+  .feature li{margin-bottom:6px}
+  .stack{display:flex; flex-wrap:wrap; gap:8px; margin-top:18px}
+  .stack span{font-size:0.84rem; padding:4px 11px; border-radius:6px; background:var(--accent-soft); color:var(--ink)}
+  .links{display:flex; gap:20px; margin-top:18px; font-weight:600; font-size:0.95rem}
+  @media (max-width:860px){ .feature{grid-template-columns:1fr; gap:10px} }
+
+  .more{display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:44px}
+  .more article{background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:24px}
+  .more h3{font-size:1.12rem; margin-bottom:8px}
+  .more p{color:var(--muted); font-size:0.94rem}
+  .more .links{margin-top:14px; font-size:0.9rem}
+  @media (max-width:960px){ .more{grid-template-columns:1fr 1fr} }
+  @media (max-width:620px){ .more{grid-template-columns:1fr} }
+
+  /* Experience */
+  .alt{background:var(--surface); border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
+  .job{display:grid; grid-template-columns:280px 1fr; gap:48px; padding:30px 0; border-top:1px solid var(--line)}
+  .job:first-of-type{border-top:none; padding-top:0}
+  .job .when{color:var(--muted); font-size:0.93rem}
+  .job .when b{display:block; color:var(--ink); font-weight:600}
+  .job h3{font-size:1.25rem}
+  .job .org{color:var(--accent); font-weight:600; margin:2px 0 10px}
+  .job ul{margin:0; padding-left:20px; color:var(--muted); max-width:64ch}
+  .job li{margin-bottom:6px}
+  @media (max-width:860px){ .job{grid-template-columns:1fr; gap:6px} }
+
+  /* Skills */
+  .skills{display:grid; grid-template-columns:repeat(2,1fr); gap:0 48px}
+  .skill-row{display:grid; grid-template-columns:170px 1fr; gap:20px; padding:18px 0; border-top:1px solid var(--line)}
+  .skill-row h3{font-size:1rem; font-family:'Instrument Sans',sans-serif; font-weight:600; letter-spacing:0}
+  .skill-row p{color:var(--muted); font-size:0.97rem}
+  @media (max-width:860px){ .skills{grid-template-columns:1fr} .skill-row{grid-template-columns:1fr; gap:4px} }
+
+  /* Education */
+  .edu{display:grid; grid-template-columns:repeat(3,1fr); gap:20px}
+  .edu article{border-top:3px solid var(--accent); padding-top:18px}
+  .edu .yrs{color:var(--muted); font-size:0.9rem}
+  .edu h3{font-size:1.12rem; margin:4px 0 4px}
+  .edu p{color:var(--muted); font-size:0.94rem}
+  .certs{margin-top:44px; display:flex; flex-wrap:wrap; gap:10px}
+  .certs span{border:1px solid var(--line); background:var(--surface); border-radius:999px; padding:8px 16px; font-size:0.92rem}
+  @media (max-width:860px){ .edu{grid-template-columns:1fr} }
+
+  /* Contact */
+  .contact{background:var(--accent); color:var(--accent-ink); padding:88px 0}
+  .contact h2{font-size:clamp(2rem,4.4vw,3.2rem); max-width:18ch}
+  .contact p{margin-top:18px; max-width:52ch; opacity:0.88; font-size:1.08rem}
+  .contact .actions .btn{border-color:var(--accent-ink); color:var(--accent-ink)}
+  .contact .actions .btn:hover{background:var(--accent-ink); color:var(--accent)}
+  .contact .actions .btn.solid{background:var(--accent-ink); color:var(--accent)}
+  .contact-list{display:flex; flex-wrap:wrap; gap:10px 28px; margin-top:36px; font-size:0.95rem}
+  .contact-list a{color:var(--accent-ink)}
+
+  footer{padding:28px 0; color:var(--muted); font-size:0.88rem}
+
+  @media (prefers-reduced-motion:no-preference){
+    .hero-grid > *{animation:rise .7s ease both}
+    .hero-grid > .portrait{animation-delay:.12s}
+    @keyframes rise{from{opacity:0; transform:translateY(16px)}to{opacity:1; transform:none}}
   }
-  .record-row{
-    display:flex; gap:14px; padding:7px 0;
-    font-family:'IBM Plex Mono', monospace; font-size:0.88rem;
-    border-bottom:1px dashed var(--line-soft);
-  }
-  .record-row:last-child{border-bottom:none;}
-  .record-key{color:var(--muted-2); min-width:92px; flex-shrink:0;}
-  .record-val{color:var(--paper);}
-  .status-dot{display:inline-block; width:7px; height:7px; border-radius:50%; background:#5ED98C; margin-right:8px; box-shadow:0 0 0 3px rgba(94,217,140,0.18);}
-
-  .cta-row{display:flex; gap:14px; flex-wrap:wrap; margin-top:32px;}
-  .btn{
-    font-family:'IBM Plex Mono', monospace; font-size:0.85rem;
-    padding:11px 20px; border-radius:7px; border:1px solid var(--line);
-    color:var(--paper); transition:all 0.15s ease; display:inline-flex; align-items:center; gap:8px;
-  }
-  .btn:hover{border-color:var(--brass); color:var(--brass); transform:translateY(-1px);}
-  .btn.primary{background:var(--brass); border-color:var(--brass); color:var(--ink); font-weight:600;}
-  .btn.primary:hover{background:var(--blue-bright); border-color:var(--blue-bright); color:var(--ink);}
-
-  /* ---------- ABOUT ---------- */
-  .about-text{max-width:680px; color:var(--paper); font-size:1.02rem;}
-  .about-text p{margin:0 0 16px;}
-  .about-text .muted{color:var(--muted);}
-
-  .stat-row{display:flex; gap:36px; margin-top:36px; flex-wrap:wrap;}
-  .stat b{font-family:'Space Grotesk', sans-serif; font-size:1.6rem; display:block; color:var(--blue-bright);}
-  .stat span{font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.05em;}
-
-  /* ---------- EXPERIENCE ---------- */
-  .exp-item{
-    display:grid; grid-template-columns:180px 1fr; gap:28px;
-    padding:28px 0; border-top:1px solid var(--line-soft);
-  }
-  .exp-item:first-of-type{border-top:none;}
-  .exp-date{font-family:'IBM Plex Mono', monospace; font-size:0.82rem; color:var(--muted); padding-top:3px;}
-  .exp-role{font-family:'Space Grotesk', sans-serif; font-size:1.15rem; font-weight:600; color:var(--paper);}
-  .exp-org{color:var(--blue); font-size:0.95rem; margin-top:2px; margin-bottom:12px;}
-  .exp-item ul{margin:0 0 14px; padding-left:20px; color:var(--muted); font-size:0.95rem;}
-  .exp-item li{margin-bottom:7px;}
-  .exp-item li b, .exp-item li strong{color:var(--paper); font-weight:600;}
-  .tag-row{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px;}
-  .tag{
-    font-family:'IBM Plex Mono', monospace; font-size:0.72rem;
-    background:var(--panel); border:1px solid var(--line); color:var(--blue-bright);
-    padding:4px 10px; border-radius:5px;
-  }
-  .code-link{font-family:'IBM Plex Mono', monospace; font-size:0.82rem; display:inline-block; margin-top:10px;}
-
-  @media (max-width:640px){
-    .exp-item{grid-template-columns:1fr; gap:8px;}
-  }
-
-  /* ---------- PROJECTS ---------- */
-  .grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:20px;}
-  .card{
-    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
-    padding:24px; display:flex; flex-direction:column;
-  }
-  .card-head{
-    font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:var(--muted-2);
-    text-transform:uppercase; letter-spacing:0.06em; margin-bottom:10px;
-  }
-  .card h3{font-size:1.1rem; margin-bottom:10px; color:var(--paper);}
-  .card p{color:var(--muted); font-size:0.92rem; margin:0 0 14px; flex:1;}
-  .card .impact{color:var(--brass); font-size:0.85rem; font-family:'IBM Plex Mono', monospace; margin-bottom:14px;}
-
-  /* ---------- SKILLS ---------- */
-  .skill-groups{display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:28px;}
-  .skill-group h4{
-    font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color:var(--muted-2);
-    text-transform:uppercase; letter-spacing:0.06em; margin-bottom:14px; font-weight:500;
-  }
-  .skill-group .tag-row{margin-top:0;}
-
-  /* ---------- EDUCATION ---------- */
-  .edu-item{padding:18px 0; border-top:1px solid var(--line-soft);}
-  .edu-item:first-of-type{border-top:none;}
-  .edu-item .exp-date{display:inline; margin-left:10px;}
-  .edu-item h3{display:inline; font-size:1.02rem;}
-  .edu-item p{color:var(--muted); margin:6px 0 0; font-size:0.9rem;}
-
-  /* ---------- CONTACT ---------- */
-  .contact-grid{display:flex; flex-wrap:wrap; gap:16px; margin-top:28px;}
-  .contact-card{
-    flex:1; min-width:220px;
-    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
-    padding:20px; text-align:left;
-  }
-  .contact-card .label{font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:var(--muted-2); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:8px; display:block;}
-  .contact-card a{font-size:0.98rem;}
-
-  footer{padding:36px 0; text-align:center; color:var(--muted-2); font-family:'IBM Plex Mono', monospace; font-size:0.78rem;}
-
-  /* reveal on scroll */
-  .reveal{opacity:0; transform:translateY(14px); transition:opacity 0.55s ease, transform 0.55s ease;}
-  .reveal.visible{opacity:1; transform:none;}
+  @media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto} }
 </style>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 
-<nav>
-  <div class="navbar">
-    <div class="brand">Yash<span>.</span>Bedekar</div>
-    <button class="navtoggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
-    <ul class="navlinks" id="navLinks">
-      <li><a href="#about">About</a></li>
+<header class="top">
+  <nav class="nav wrap" aria-label="Main">
+    <a class="brand" href="#">Yash Bedekar</a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menu">Menu</button>
+    <ul id="menu">
+      <li><a href="#work">Projects</a></li>
       <li><a href="#experience">Experience</a></li>
-      <li><a href="#projects">Projects</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#education">Education</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-  </div>
-</nav>
-
-<header class="hero wrap">
-  <div class="hero-top">
-    <div class="hero-intro">
-      <div class="hero-query mono">
-        <span class="kw">SELECT</span> * <span class="kw">FROM</span> engineers <span class="kw">WHERE</span> name = <span style="color:#8FCBE8">'Yash Bedekar'</span>;
-      </div>
-      <h1>Data Science student.<br>Full-stack engineer at heart.</h1>
-      <p class="role">MSc Data Science @ University of Europe for Applied Sciences — Potsdam, Germany</p>
-    </div>
-    <div class="hero-photo">
-      <img src="profile.jpg" alt="Portrait of Yash Bedekar">
-    </div>
-  </div>
-
-  <div class="record-card">
-    <div class="record-row"><span class="record-key">location</span><span class="record-val">Potsdam, Germany</span></div>
-    <div class="record-row"><span class="record-key">status</span><span class="record-val"><span class="status-dot"></span>Open to Werkstudent &amp; Internship roles — Data Science / ML / Data Engineering</span></div>
-    <div class="record-row"><span class="record-key">stack</span><span class="record-val">Python · SQL · ASP.NET Core · React · TensorFlow · scikit-learn</span></div>
-    <div class="record-row"><span class="record-key">background</span><span class="record-val">1+ year professional full-stack development, now applied to data pipelines &amp; ML</span></div>
-  </div>
-
-  <div class="cta-row">
-    <a class="btn primary" href="mailto:yash.bedekar07@gmail.com">Email me</a>
-    <a class="btn" href="https://www.linkedin.com/in/yashbedekar/" target="_blank" rel="noopener">LinkedIn</a>
-    <a class="btn" href="https://github.com/yashbedekar07" target="_blank" rel="noopener">GitHub — Dev work</a>
-    <a class="btn" href="https://github.com/yashbedekar-DS" target="_blank" rel="noopener">GitHub — DS projects</a>
-  </div>
+  </nav>
 </header>
 
-<section id="about">
-  <div class="wrap reveal">
-    <div class="eyebrow"><span class="node"></span><span class="mono">TABLE: about</span></div>
-    <h2 class="section-title">About</h2>
-    <div class="about-text">
-      <p>I'm an MSc Data Science student in Germany with a foundation in professional full-stack development — over a year spent designing SQL Server schemas, building REST APIs, and shipping enterprise ASP.NET and React applications before starting the Master's.</p>
-      <p class="muted">That background is now applied to the data layer directly: building ML pipelines end-to-end, from data cleaning and feature engineering through model evaluation and explainability (Grad-CAM, SHAP), and to full-stack data applications combining APIs, dashboards, and cloud deployment.</p>
-      <p>AWS Academy Graduate — Data Engineering, and Microsoft Certified: Azure Fundamentals.</p>
-    </div>
-    <div class="stat-row">
-      <div class="stat"><b>3</b><span>Full-stack apps shipped</span></div>
-      <div class="stat"><b>5</b><span>Data science &amp; ML projects</span></div>
-      <div class="stat"><b>2</b><span>Cloud certifications</span></div>
-    </div>
-  </div>
-</section>
-
-<section id="experience">
-  <div class="wrap reveal">
-    <div class="eyebrow"><span class="node"></span><span class="mono">TABLE: experience</span></div>
-    <h2 class="section-title">Experience</h2>
-
-    <div class="exp-item">
-      <div class="exp-date mono">Aug 2024 – Jul 2025<br>Pune, India</div>
+<main id="main">
+  <section class="hero">
+    <div class="wrap hero-grid">
       <div>
-        <div class="exp-role">Full Stack .NET Developer</div>
-        <div class="exp-org">Inquisitech Solutions</div>
-        <ul>
-          <li>Fully delivered the <strong>Rakes, Consignors, and Transports</strong> modules of a rail logistics management system using ASP.NET Core MVC, C#, Entity Framework Core, and SQL Server.</li>
-          <li>Architected the relational schema and EF Core migrations for the system's full 12-module design.</li>
-          <li><strong>20% gain in operational efficiency</strong>, <strong>15% reduction in processing time</strong> through optimized data workflows.</li>
-        </ul>
-        <div class="tag-row">
-          <span class="tag">ASP.NET Core MVC</span><span class="tag">Entity Framework Core</span><span class="tag">SQL Server</span><span class="tag">Azure</span>
+        <h1>I turn messy data into tools people can use.</h1>
+        <p class="lede">I'm Yash, an MSc Data Science student in Potsdam with 13 months of software development experience. I build the whole thing: data pipeline, model, API and interface.</p>
+        <div class="avail">Open to working student roles in Data, ML and AI</div>
+        <div class="actions">
+          <a class="btn primary" href="#work">See my projects</a>
+          <a class="btn" href="mailto:yash.bedekar07@gmail.com">Email me</a>
+          <a class="btn" href="https://www.linkedin.com/in/yashbedekar/" target="_blank" rel="noopener">LinkedIn</a>
         </div>
-        <a class="code-link" href="https://github.com/yashbedekar07/overseas-transport-management-sys" target="_blank" rel="noopener">→ View repository</a>
       </div>
+      <figure class="portrait">
+        <img src="profile.jpg" alt="Portrait of Yash Bedekar" width="640" height="640">
+        <figcaption><strong>20 h/week</strong>during semester,<br>up to 40 h in breaks</figcaption>
+      </figure>
     </div>
+  </section>
 
-    <div class="exp-item">
-      <div class="exp-date mono">Sep 2025 – Feb 2026<br>Remote / India</div>
-      <div>
-        <div class="exp-role">React JS Developer</div>
-        <div class="exp-org">Vedartsolutions</div>
-        <ul>
-          <li>Built the React frontend for <strong>BodyPowerGym</strong>, a gym management platform, integrating REST APIs backed by .NET Core and SQL Server.</li>
-          <li>Designed a custom admin dashboard with real-time data visualization of gym metrics.</li>
-          <li><strong>25% increase in user engagement</strong> through improved UX and real-time features.</li>
-        </ul>
-        <div class="tag-row">
-          <span class="tag">React</span><span class="tag">.NET Core</span><span class="tag">SQL Server</span><span class="tag">Bootstrap</span>
-        </div>
-        <a class="code-link" href="https://github.com/yashbedekar07/fit-track-web-app" target="_blank" rel="noopener">→ View repository</a>
-      </div>
-    </div>
-
-    <div class="exp-item">
-      <div class="exp-date mono">Freelance<br>Remote</div>
-      <div>
-        <div class="exp-role">Full Stack .NET Developer</div>
-        <div class="exp-org">Self-Employed — Client Project</div>
-        <ul>
-          <li>Independently designed, built, and deployed <strong>iCare</strong>, an optical clinic management system — patient records, prescriptions, and inventory behind a secure admin panel.</li>
-          <li>Implemented cookie-based auth with PBKDF2 password hashing (SHA-256, 100K iterations).</li>
-          <li><strong>30% faster data retrieval</strong>, <strong>20% lower operational costs</strong> for the client.</li>
-        </ul>
-        <div class="tag-row">
-          <span class="tag">ASP.NET Core 8 MVC</span><span class="tag">Entity Framework Core</span><span class="tag">SQL Server</span>
-        </div>
-        <a class="code-link" href="https://github.com/yashbedekar07/icare-optical-clinic" target="_blank" rel="noopener">→ View repository</a>
-      </div>
+  <div class="proof">
+    <div class="wrap proof-grid">
+      <div><strong>MSc Data Science</strong><span>UE Potsdam, until Aug 2027</span></div>
+      <div><strong>13 months</strong><span>software development internships</span></div>
+      <div><strong>Berlin and Potsdam</strong><span>on-site, hybrid or remote</span></div>
+      <div><strong>English C1</strong><span>German B1 in progress</span></div>
     </div>
   </div>
-</section>
 
-<section id="projects">
-  <div class="wrap reveal">
-    <div class="eyebrow"><span class="node"></span><span class="mono">TABLE: projects</span></div>
-    <h2 class="section-title">Data Science &amp; Personal Projects</h2>
-
-    <div class="grid">
-      <div class="card">
-        <div class="card-head">Academic — MSc Data Science</div>
-        <h3>Football Player Role Classification</h3>
-        <p>Built and benchmarked a custom CNN against ResNet50 and MobileNetV2 to classify football players into 4 positional roles (2,325 images). Applied Grad-CAM and SHAP for explainability.</p>
-        <div class="impact">Deployed as a live React demo app</div>
-        <div class="tag-row">
-          <span class="tag">TensorFlow</span><span class="tag">CNN</span><span class="tag">Grad-CAM</span><span class="tag">SHAP</span>
-        </div>
-        <a class="code-link" href="https://github.com/yashbedekar-DS/football-role-classification-ml" target="_blank" rel="noopener">→ View repository</a>
+  <section id="work">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Selected projects</h2>
+        <p>End-to-end builds where I own every layer, from raw data to a deployed app someone can click through.</p>
       </div>
 
-      <div class="card">
-        <div class="card-head">Academic — MSc Data Science</div>
-        <h3>WHOOP Fitness Recovery Prediction</h3>
-        <p>Built a regression pipeline on 100,000 records / 41 features of wearable fitness data to predict recovery score. Benchmarked models via MAE, RMSE, R², and cross-validation.</p>
-        <div class="impact">Linear Regression selected for best interpretability/accuracy balance</div>
-        <div class="tag-row">
-          <span class="tag">scikit-learn</span><span class="tag">Regression</span><span class="tag">Cross-Validation</span>
+      <article class="feature">
+        <div class="meta"><b>2026, personal project</b>AI application</div>
+        <div>
+          <h3>Job RAG Assistant</h3>
+          <p>A retrieval-augmented assistant that indexes job postings and uses the Claude API to explain how well a profile fits a role, then drafts application text grounded in the retrieved posting.</p>
+          <ul>
+            <li>Built the pipeline end to end: data cleaning, embeddings, vector search, API layer and query logging</li>
+            <li>Web interface with PDF upload so users can drop in their own CV</li>
+          </ul>
+          <div class="stack"><span>Python</span><span>FastAPI</span><span>ChromaDB</span><span>Claude API</span><span>Streamlit</span></div>
+          <div class="links"><a href="https://github.com/yashbedekar07" target="_blank" rel="noopener">View on GitHub</a></div>
         </div>
-        <a class="code-link" href="https://github.com/yashbedekar-DS/whoop-fitness-recovery-ml" target="_blank" rel="noopener">→ View repository</a>
-      </div>
+      </article>
 
-      <div class="card">
-        <div class="card-head">Team Project — Led 4 members</div>
-        <h3>India Air Quality Index Analysis</h3>
-        <p>Led a team analyzing 29,531 daily CPCB records across 26 Indian cities (2015–2020). Owned the data pipeline: ingestion, cleaning, and feature engineering.</p>
-        <div class="impact">~26% of city-days recorded unhealthy AQI levels</div>
-        <div class="tag-row">
-          <span class="tag">Python</span><span class="tag">pandas</span><span class="tag">Data Pipeline</span>
+      <article class="feature">
+        <div class="meta"><b>2026, personal project</b>Machine learning</div>
+        <div>
+          <h3>Customer Churn Prediction System</h3>
+          <p>A churn model on the IBM Telco dataset (7,043 customers) with SHAP explanations, so non-technical users can see the main drivers behind each risk score.</p>
+          <ul>
+            <li>Served through a FastAPI backend and a Streamlit dashboard</li>
+            <li>Prediction logging to SQLite/PostgreSQL, containerised with Docker, CI checks on every push</li>
+          </ul>
+          <div class="stack"><span>XGBoost</span><span>SHAP</span><span>FastAPI</span><span>Streamlit</span><span>Docker</span><span>CI/CD</span></div>
+          <div class="links"><a href="https://github.com/yashbedekar07/churn-prediction-system" target="_blank" rel="noopener">View on GitHub</a></div>
         </div>
-        <a class="code-link" href="https://github.com/yashbedekar07/air-quality-index-project" target="_blank" rel="noopener">→ View repository</a>
-      </div>
+      </article>
 
-      <div class="card">
-        <div class="card-head">Group Project — Analysis &amp; Reporting Lead</div>
-        <h3>GeoPulse Intelligence</h3>
-        <p>Linked commodity markets (Brent Oil, Gold, Silver) and SWIFT currency-flow data to real geopolitical events. Led analysis synthesis, report writing, and GitHub repository management.</p>
-        <div class="impact">6-member team · Applied Data Analytics &amp; Market Research coursework</div>
-        <div class="tag-row">
-          <span class="tag">Data Analysis</span><span class="tag">Market Research</span><span class="tag">Technical Writing</span>
+      <article class="feature">
+        <div class="meta"><b>2026, personal project</b>Full-stack AI app, live</div>
+        <div>
+          <h3>BonScan</h3>
+          <p>A full-stack AI expense tracker with receipt scanning: upload a photo of a receipt and it turns it into tracked expenses.</p>
+          <ul>
+            <li>Frontend deployed on Vercel, backend deployed on Render</li>
+            <li>Built step by step, from receipt scanning to a live, usable app</li>
+          </ul>
+          <div class="stack"><span>Full-stack</span><span>AI receipt scanning</span><span>Vercel</span><span>Render</span></div>
+          <div class="links">
+            <a href="https://bonscan-roan.vercel.app" target="_blank" rel="noopener">Try the live app</a>
+            <a href="https://github.com/yashbedekar07/bonscan" target="_blank" rel="noopener">View on GitHub</a>
+          </div>
         </div>
-        <a class="code-link" href="https://github.com/yashbedekar-DS/GeoPulse-Intelligence-DSB-Project" target="_blank" rel="noopener">→ View repository</a>
-      </div>
+      </article>
 
-      <div class="card">
-        <div class="card-head">Personal Project</div>
-        <h3>FitnessGym Web App</h3>
-        <p>Full-stack gym management system covering member management, trainer scheduling, class bookings, and equipment tracking through an admin dashboard.</p>
-        <div class="impact">Relational schema: Members, Trainers, Classes, Equipment, Attendance</div>
-        <div class="tag-row">
-          <span class="tag">ASP.NET MVC</span><span class="tag">Entity Framework</span><span class="tag">SQL Server</span>
-        </div>
-        <a class="code-link" href="https://github.com/yashbedekar07/FitnessGym-WebApp" target="_blank" rel="noopener">→ View repository</a>
+      <div class="more">
+        <article>
+          <h3>Football Player Role Classification</h3>
+          <p>Custom CNN benchmarked against ResNet50 and MobileNetV2 to classify players into 4 roles from 2,325 images, explained with Grad-CAM and SHAP.</p>
+          <div class="stack"><span>TensorFlow</span><span>CNN</span><span>Grad-CAM</span></div>
+          <div class="links"><a href="https://github.com/yashbedekar07/football-role-classification-ml" target="_blank" rel="noopener">GitHub</a></div>
+        </article>
+        <article>
+          <h3>India Air Quality Analysis</h3>
+          <p>Led a team of four and built the cleaning pipeline for 29,531 daily observations across 26 cities, 2015 to 2020.</p>
+          <div class="stack"><span>Python</span><span>pandas</span><span>Team lead</span></div>
+          <div class="links"><a href="https://github.com/yashbedekar07/air-quality-index-project" target="_blank" rel="noopener">GitHub</a></div>
+        </article>
+        <article>
+          <h3>WHOOP Recovery Prediction</h3>
+          <p>Regression pipeline on 100K rows and 41 features, comparing models on MAE, RMSE and R² with cross-validation.</p>
+          <div class="stack"><span>scikit-learn</span><span>Regression</span></div>
+          <div class="links"><a href="https://github.com/yashbedekar07/whoop-fitness-recovery-ml" target="_blank" rel="noopener">GitHub</a></div>
+        </article>
+        <article>
+          <h3>GeoPulse Intelligence</h3>
+          <p>Linked Brent oil, gold, silver and SWIFT currency-flow data to geopolitical events. Led the analysis and report in a six-person team.</p>
+          <div class="stack"><span>Data analysis</span><span>Reporting</span></div>
+          <div class="links"><a href="https://github.com/yashbedekar07/GeoPulse-Intelligence-DSB-Project" target="_blank" rel="noopener">GitHub</a></div>
+        </article>
+        <article>
+          <h3>AWS Data Engineering Pipelines</h3>
+          <p>Two AWS Academy capstones: a solo fisheries data lake pipeline and a team clickstream analytics pipeline for a café.</p>
+          <div class="stack"><span>AWS</span><span>Data lake</span><span>ETL</span></div>
+          <div class="links"><a href="https://github.com/yashbedekar07" target="_blank" rel="noopener">GitHub</a></div>
+        </article>
+        <article>
+          <h3>Transport Management System</h3>
+          <p>Modules and the 12-module database schema of a transport management system, built during my Inquisitech internship.</p>
+          <div class="stack"><span>C#</span><span>ASP.NET</span><span>SQL Server</span></div>
+          <div class="links"><a href="https://github.com/yashbedekar07/overseas-transport-management-sys" target="_blank" rel="noopener">GitHub</a></div>
+        </article>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="skills">
-  <div class="wrap reveal">
-    <div class="eyebrow"><span class="node"></span><span class="mono">TABLE: skills</span></div>
-    <h2 class="section-title">Skills</h2>
-    <div class="skill-groups">
-      <div class="skill-group">
-        <h4>Languages</h4>
-        <div class="tag-row">
-          <span class="tag">Python</span><span class="tag">C#</span><span class="tag">JavaScript</span><span class="tag">SQL</span>
-        </div>
+  <section id="experience" class="alt">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Experience</h2>
+        <p>Professional software development in India, and hands-on operations work in Germany.</p>
       </div>
-      <div class="skill-group">
-        <h4>Data &amp; ML</h4>
-        <div class="tag-row">
-          <span class="tag">pandas</span><span class="tag">NumPy</span><span class="tag">scikit-learn</span><span class="tag">TensorFlow / Keras</span><span class="tag">Power BI</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <h4>Full-Stack Dev</h4>
-        <div class="tag-row">
-          <span class="tag">ASP.NET Core / MVC</span><span class="tag">React</span><span class="tag">Entity Framework</span><span class="tag">FastAPI</span><span class="tag">REST APIs</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <h4>Data &amp; Cloud</h4>
-        <div class="tag-row">
-          <span class="tag">SQL Server</span><span class="tag">Azure</span><span class="tag">AWS</span><span class="tag">Docker</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <h4>Tools</h4>
-        <div class="tag-row">
-          <span class="tag">Git / GitHub</span><span class="tag">Jupyter</span><span class="tag">IIS</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <h4>Languages Spoken</h4>
-        <div class="tag-row">
-          <span class="tag">English</span><span class="tag">Hindi</span><span class="tag">Marathi</span><span class="tag">German (A2/B1)</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<section id="education">
-  <div class="wrap reveal">
-    <div class="eyebrow"><span class="node"></span><span class="mono">TABLE: education</span></div>
-    <h2 class="section-title">Education &amp; Certifications</h2>
+      <div class="job">
+        <div class="when"><b>Jul 2026 – Aug 2026</b>Großbeeren, Germany</div>
+        <div>
+          <h3>Warehouse Associate (part-time)</h3>
+          <div class="org">CEVA Logistics, CFS Fulfilment</div>
+          <ul>
+            <li>Worked across putaway, picking, OSR packing, returns induction and repacking in a high-volume fulfilment centre</li>
+            <li>Used handheld barcode scanners at every step and saw how floor-level data quality drives inventory and order accuracy</li>
+            <li>Worked to KPI targets in shifts with a German-speaking team</li>
+          </ul>
+        </div>
+      </div>
 
-    <div class="edu-item">
-      <h3>MSc Data Science</h3><span class="exp-date mono">Mar 2026 – Aug 2027 (expected)</span>
-      <p>University of Europe for Applied Sciences — Potsdam, Germany</p>
-    </div>
-    <div class="edu-item">
-      <h3>MSc Computer Applications</h3><span class="exp-date mono">Aug 2022 – Aug 2024</span>
-      <p>Bharati Vidyapeeth, India</p>
-    </div>
-    <div class="edu-item">
-      <h3>BSc Computer Applications</h3><span class="exp-date mono">Jun 2018 – Aug 2022</span>
-      <p>Bharati Vidyapeeth, India</p>
-    </div>
-    <div class="edu-item">
-      <p style="margin-top:4px">🎖 AWS Academy Graduate — Data Engineering &nbsp;·&nbsp; Microsoft Certified: Azure Fundamentals &nbsp;·&nbsp; Python for Data Science &nbsp;·&nbsp; Fundamentals of Artificial Intelligence</p>
-    </div>
-  </div>
-</section>
+      <div class="job">
+        <div class="when"><b>Jun 2025 – Nov 2025</b>Kolhapur, India</div>
+        <div>
+          <h3>Web Developer Intern</h3>
+          <div class="org">Vedartsolutions</div>
+          <ul>
+            <li>Built responsive React.js components and connected them to back-end services in a full-stack team</li>
+            <li>Implemented RESTful APIs and designed and optimised SQL Server schemas to keep application data consistent</li>
+          </ul>
+        </div>
+      </div>
 
-<section id="contact">
-  <div class="wrap reveal">
-    <div class="eyebrow"><span class="node"></span><span class="mono">TABLE: contact</span></div>
-    <h2 class="section-title">Let's talk</h2>
-    <p class="about-text muted">Open to Werkstudent and internship opportunities in Data Science, ML, and Data Engineering — Berlin &amp; Potsdam, remote/hybrid across Germany.</p>
-    <div class="contact-grid">
-      <div class="contact-card">
-        <span class="label">Email</span>
+      <div class="job">
+        <div class="when"><b>Jan 2024 – Jul 2024</b>Pune, India</div>
+        <div>
+          <h3>Software Developer Intern</h3>
+          <div class="org">Inquisitech Solutions</div>
+          <ul>
+            <li>Delivered the Rakes, Consignors and Transports modules of a transport management system in an Agile team, and designed the database schema for the wider 12-module system</li>
+            <li>Independently built the ICareOptical web application, from requirements to testing, and deployed it on IIS</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Skills</h2>
+        <p>Tools I have used in shipped projects, not just coursework.</p>
+      </div>
+      <div class="skills">
+        <div class="skill-row"><h3>Data and analytics</h3><p>Python, SQL, pandas, NumPy, data cleaning, exploratory analysis, Power BI, Tableau, Excel</p></div>
+        <div class="skill-row"><h3>Machine learning and AI</h3><p>scikit-learn, XGBoost, SHAP, TensorFlow/Keras, Grad-CAM, Claude API, retrieval-augmented generation</p></div>
+        <div class="skill-row"><h3>Software development</h3><p>React.js, C#, ASP.NET, FastAPI, Streamlit, REST APIs, SQL Server, database design</p></div>
+        <div class="skill-row"><h3>Cloud and DevOps</h3><p>Docker, Git, CI/CD, AWS and Azure fundamentals, Vercel, Render, IIS</p></div>
+        <div class="skill-row"><h3>Ways of working</h3><p>Agile teamwork, documentation, requirements to delivery, independent problem solving</p></div>
+        <div class="skill-row"><h3>Languages</h3><p>English (C1), Hindi and Marathi (native), German (A2 completed, B1 in progress)</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="education" class="alt">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Education</h2>
+        <p>Two degrees in computer applications, now specialising in data science in Germany.</p>
+      </div>
+      <div class="edu">
+        <article>
+          <div class="yrs">Mar 2026 – Aug 2027 (expected)</div>
+          <h3>M.Sc. Data Science</h3>
+          <p>University of Europe for Applied Sciences, Potsdam</p>
+        </article>
+        <article>
+          <div class="yrs">Aug 2022 – Aug 2024</div>
+          <h3>Master of Computer Applications</h3>
+          <p>Bharati Vidyapeeth, India. CGPA 9.00</p>
+        </article>
+        <article>
+          <div class="yrs">Jun 2018 – Aug 2022</div>
+          <h3>Bachelor of Computer Applications</h3>
+          <p>Bharati Vidyapeeth, India. CGPA 8.87</p>
+        </article>
+      </div>
+      <div class="certs" aria-label="Certifications">
+        <span>AWS Academy Graduate, Data Engineering</span>
+        <span>Microsoft Certified: Azure Fundamentals</span>
+        <span>Python for Data Science (IBM)</span>
+        <span>Fundamentals of Artificial Intelligence</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <h2>Looking for a working student who ships?</h2>
+      <p>I'm available for Data Science, ML, AI and Data Engineering roles in Berlin and Potsdam, 20 hours a week during the semester. I usually reply within a day.</p>
+      <div class="actions">
+        <a class="btn solid" href="mailto:yash.bedekar07@gmail.com">Email me</a>
+        <a class="btn" href="https://www.linkedin.com/in/yashbedekar/" target="_blank" rel="noopener">Connect on LinkedIn</a>
+      </div>
+      <div class="contact-list">
         <a href="mailto:yash.bedekar07@gmail.com">yash.bedekar07@gmail.com</a>
-      </div>
-      <div class="contact-card">
-        <span class="label">LinkedIn</span>
-        <a href="https://www.linkedin.com/in/yashbedekar/" target="_blank" rel="noopener">in/yashbedekar</a>
-      </div>
-      <div class="contact-card">
-        <span class="label">GitHub — Dev work</span>
+        <a href="tel:+4915236404478">+49 1523 6404478</a>
         <a href="https://github.com/yashbedekar07" target="_blank" rel="noopener">github.com/yashbedekar07</a>
-      </div>
-      <div class="contact-card">
-        <span class="label">GitHub — DS projects</span>
-        <a href="https://github.com/yashbedekar-DS" target="_blank" rel="noopener">github.com/yashbedekar-DS</a>
-      </div>
-      <div class="contact-card">
-        <span class="label">Kaggle</span>
         <a href="https://www.kaggle.com/yashbedekar07" target="_blank" rel="noopener">kaggle.com/yashbedekar07</a>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+</main>
 
-<footer>
-  © 2026 Yash Bedekar — Built with vanilla HTML/CSS, hosted on GitHub Pages
-</footer>
+<footer class="wrap">© 2026 Yash Bedekar. Built with HTML and CSS, hosted on GitHub Pages.</footer>
 
 <script>
-  const navToggle = document.getElementById('navToggle');
-  const navLinks = document.getElementById('navLinks');
-  navToggle.addEventListener('click', () => {
-    const open = navLinks.classList.toggle('open');
-    navToggle.setAttribute('aria-expanded', open);
+  const btn = document.getElementById('menuBtn');
+  const menu = document.getElementById('menu');
+  btn.addEventListener('click', () => {
+    const open = menu.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open);
   });
-  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-    navLinks.classList.remove('open');
-    navToggle.setAttribute('aria-expanded', false);
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    menu.classList.remove('open');
+    btn.setAttribute('aria-expanded', false);
   }));
-
-  const revealEls = document.querySelectorAll('.reveal');
-  if ('IntersectionObserver' in window) {
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
-    }, { threshold: 0.1 });
-    revealEls.forEach(el => io.observe(el));
-  } else {
-    revealEls.forEach(el => el.classList.add('visible'));
-  }
 </script>
-
 </body>
 </html>
